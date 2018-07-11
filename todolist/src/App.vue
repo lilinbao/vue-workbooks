@@ -25,8 +25,11 @@ export default {
     }
   },
   watch: {// 实现深度监听，不仅能监听原始类型数据的改变，也能监听对象内部的改变
-    todolist: function (present, old) {
-      window.localStorage.setItem('todolist', JSON.stringify(present))
+    todolist: {
+      deep: true,
+      handler: function (present, old) {
+        window.localStorage.setItem('todolist', JSON.stringify(present))
+      }
     }
   },
   components: {Header, Body, Footer}
